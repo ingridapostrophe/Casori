@@ -128,6 +128,38 @@ input[type="text"], textarea {
 .motif.vide { border-style: dashed; }
 .a-venir { color: var(--gris); text-align: center; line-height: 1.4; }
 
+/* Étapes 2, 3, 5 */
+.rendu { font-size: 13px; color: var(--gris); margin-top: 8px; }
+.rendu b { color: var(--encre); font-weight: 600; }
+.bloc-etape { border: 1px solid var(--trait); border-radius: 8px; margin-bottom: 10px; background: var(--blanc); }
+.bloc-etape.ouvert { border-color: var(--or); padding-bottom: 14px; }
+.bloc-etape.ouvert > :not(.ligne-etape) { margin-left: 14px; margin-right: 14px; }
+.ligne-etape { display: flex; align-items: center; gap: 10px; padding: 12px 14px; font-size: 14px; }
+.ligne-etape b { font-weight: 600; min-width: 46px; }
+.poignee { color: #C9C2B6; letter-spacing: -3px; cursor: grab; }
+.suppr { margin-left: auto; color: var(--gris); font-size: 18px; }
+.ajouter { width: 100%; padding: 12px; border: 1px dashed var(--or); border-radius: 8px; background: none; color: var(--or); font-weight: 600; }
+.ajouter span { font-weight: 400; color: var(--gris); }
+.aide-encart { margin-top: 18px; padding: 16px; background: var(--creme); border-left: 3px solid var(--or); border-radius: 4px; font-size: 13px; line-height: 1.5; }
+.aide-encart p { margin-bottom: 8px; }
+
+/* Étape 4 : couleurs perso, variantes */
+.palette.perso .arc { background: conic-gradient(#C0392B, #E0A458, #6F7F62, #2F4F6F, #6A5A8C, #C0392B); }
+.perso-choix { display: none; margin-top: 12px; padding: 14px; background: var(--creme); border-radius: 8px; }
+.perso-choix.visible { display: block; }
+.perso-choix label { margin-top: 0; }
+.couleur { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.couleur i { width: 36px; height: 36px; border-radius: 6px; flex: none; border: 1px solid var(--trait); }
+.couleur input { margin-top: 0 !important; font-family: monospace !important; }
+.motifs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.motif { min-width: 0; }
+.motif span { font-size: 11px; }
+.plus { font-size: 22px; color: var(--or); font-weight: 400; }
+.variantes { display: none; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--gris); }
+.variantes.visible { display: flex; }
+.variantes button { background: var(--blanc); border: 1px solid var(--trait); border-radius: 99px; padding: 6px 14px; font-size: 13px; }
+.variantes button.choisi { border-color: var(--or); color: var(--encre); font-weight: 600; }
+
 /* Étape 6 */
 .recap { list-style: none; border-top: 1px solid var(--trait); margin-bottom: 20px; }
 .recap li { display: flex; flex-direction: column; padding: 10px 0; border-bottom: 1px solid var(--trait); }

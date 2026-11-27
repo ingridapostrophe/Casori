@@ -62,6 +62,48 @@
         <p class="astuce">Astuce : 2 ou 3 phrases suffisent. Racontez qui vous êtes, pas le programme.</p>
       </div>
 
+      <!-- Étape 2 -->
+      <div class="etape-contenu" data-e="2">
+        <p class="sur-titre">Étape 2 sur 6</p>
+        <h1>Le grand jour</h1>
+        <p class="aide">La date et le lieu s'affichent sous vos prénoms.</p>
+
+        <label>Date du mariage<input type="text" value="16 / 10 / 2027" class="champ-date"></label>
+        <p class="rendu">S'affichera : <b>Samedi 16 octobre 2027</b></p>
+
+        <label>Lieu de la fête<input type="text" value="Mas Puig"></label>
+        <label>Ville<input type="text" value="Saint-Génis-des-Fontaines"></label>
+        <p class="rendu">S'affichera : <b>Mas Puig - Saint-Génis-des-Fontaines</b></p>
+      </div>
+
+      <!-- Étape 3 -->
+      <div class="etape-contenu" data-e="3">
+        <p class="sur-titre">Étape 3 sur 6</p>
+        <h1>Le programme</h1>
+        <p class="aide">Les grands moments de la journée. Le lien d'itinéraire se crée tout seul à partir de l'adresse.</p>
+
+        <div class="bloc-etape">
+          <div class="ligne-etape"><span class="poignee">⋮⋮</span><b>14h45</b> Cérémonie religieuse<span class="suppr">×</span></div>
+        </div>
+        <div class="bloc-etape ouvert">
+          <div class="ligne-etape"><span class="poignee">⋮⋮</span><b>18h00</b> Vin d'honneur<span class="suppr">×</span></div>
+          <div class="duo">
+            <label>Heure<input type="text" value="18h00"></label>
+            <label>Moment<input type="text" value="Vin d'honneur"></label>
+          </div>
+          <label>Adresse<input type="text" value="Mas Puig, Saint-Génis-des-Fontaines"></label>
+          <label class="case"><input type="checkbox" checked> <span>Afficher le lien « Itinéraire Google Maps » - <a href="#" class="lien">tester le lien</a></span></label>
+        </div>
+        <div class="bloc-etape">
+          <div class="ligne-etape"><span class="poignee">⋮⋮</span><b>20h00</b> Dîner et soirée<span class="suppr">×</span></div>
+        </div>
+        <button class="ajouter">+ Ajouter un moment <span>(5 maximum)</span></button>
+
+        <label>Petite note sous le programme <span class="compteur">facultatif</span>
+          <input type="text" value="Merci de noter que les animaux ne sont pas acceptés sur le domaine.">
+        </label>
+      </div>
+
       <!-- Étape 4 -->
       <div class="etape-contenu" data-e="4">
         <p class="sur-titre">Étape 4 sur 6</p>
@@ -86,6 +128,17 @@
             <span class="pastilles"><i style="background:#F3ECE3"></i><i style="background:#6E1F2F"></i><i style="background:#C9A97A"></i></span>
             Bordeaux &amp; champagne
           </button>
+          <button class="palette perso" data-p="perso">
+            <span class="pastilles"><i class="arc"></i></span>
+            Mes couleurs
+          </button>
+        </div>
+        <div class="perso-choix" id="perso-choix">
+          <div class="duo">
+            <label>Couleur principale<span class="couleur"><i style="background:#2E6B5E"></i><input type="text" value="#2E6B5E"></span></label>
+            <label>Couleur d'accent<span class="couleur"><i style="background:#E0A458"></i><input type="text" value="#E0A458"></span></label>
+          </div>
+          <p class="petit">Le fond et les teintes de texte sont calculés pour vous. Une couleur trop claire pour être lue est légèrement assombrie.</p>
         </div>
 
         <label>Motif</label>
@@ -93,6 +146,28 @@
           <button class="motif" data-m="brin"><img src="apercu/assets/fleur-brin.png" alt=""><span>Brin fleuri</span></button>
           <button class="motif" data-m="olivier"><img src="apercu/assets/motif-olivier.png" alt=""><span>Olivier</span></button>
           <button class="motif" data-m="bougainvillier"><img src="apercu/assets/motif-bougainvillier.png" alt=""><span>Bougainvillier</span></button>
+          <button class="motif vide" data-m="perso"><span class="a-venir"><b class="plus">+</b><br>Votre motif<br><em class="or">+10 €</em></span></button>
+        </div>
+        <div class="variantes" id="variantes">
+          <span>Disposition :</span>
+          <button data-v="coin">Un coin</button><button data-v="deux">Deux coins</button>
+        </div>
+      </div>
+
+      <!-- Étape 5 -->
+      <div class="etape-contenu" data-e="5">
+        <p class="sur-titre">Étape 5 sur 6</p>
+        <h1>Les réponses</h1>
+        <p class="aide">Vos invités répondent via un formulaire Google, et vous retrouvez toutes les réponses dans un tableau.</p>
+
+        <label>Répondre avant le<input type="text" value="30 / 06 / 2027"></label>
+
+        <label>Lien de votre formulaire de réponse<input type="text" value="https://forms.gle/..." class="vide-ish"></label>
+
+        <div class="aide-encart">
+          <p><b>Pas encore de formulaire ?</b> Copiez notre modèle prêt à l'emploi (présence, nombre de personnes, régime alimentaire) en un clic, puis collez son lien ci-dessus.</p>
+          <a href="#" class="lien">Copier le modèle Casorí</a>
+          <p class="petit">Vous pourrez le compléter plus tard : le lien ne change pas.</p>
         </div>
       </div>
 

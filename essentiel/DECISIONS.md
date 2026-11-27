@@ -13,14 +13,19 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - 6 étapes : Vous deux, Le grand jour, Le programme, Votre style, Les réponses, Vérifier et publier.
 - Prénoms en Allura avec animation simple (pas de generer_prenoms.py).
 - Palettes : Sauge & rose ancien, Terracotta & sable, Méditerranée & ocre, Bordeaux & champagne.
-- Palette personnalisée : 2 couleurs (principale + accent), code couleur possible, fond et teintes de texte calculés, lisibilité garantie.
+- Palette personnalisée **incluse** : 2 couleurs (principale + accent), code couleur possible, fond et teintes de texte calculés, lisibilité garantie.
 - Motifs : brin fleuri, olivier, bougainvillier (variantes « un coin » et « deux coins en miroir »).
   - À régler au code : bougainvillier plus petit sur tablette (720-1024 px) et sur petits téléphones.
 - Icônes au trait (lettre, couple, soleil, vélo) : gardées pour une version suivante.
 - Option +10 € : le couple intègre son propre motif.
+  - Contrôle à l'envoi : fond transparent OK ; fond blanc -> proposition de retrait automatique ; moins de 500 px -> refus.
+  - Placement imposé : au-dessus des prénoms, taille maximale (pas de coins).
+  - CGV : le couple garantit disposer des droits sur l'image. Ingrid peut refuser à la vérification.
+- Site en ligne jusqu'à 1 an après le mariage.
+- Étape 3 : 5 moments maximum, lien Google Maps généré depuis l'adresse, note facultative.
+- Étape 5 : date limite + lien Google Form, avec un modèle de formulaire Casorí à copier.
 
 ## Ouvert
-- Palette personnalisée : incluse ou en option ?
-- Durée de mise en ligne du site (proposé : 1 an après le mariage).
 - Motifs définitifs recadrés par Ingrid (PNG transparent, ~800 px de large). Vérifier la licence des visuels issus de Canva.
-- Étapes 2, 3 et 5 à maquetter.
+- Créer le modèle de Google Form Casorí (présence, nombre de personnes, régime alimentaire).
+- Valider la maquette complète avant de passer au code.
