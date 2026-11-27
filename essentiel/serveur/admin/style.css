@@ -1,0 +1,52 @@
+/* Casorí - L'Atelier - espace privé */
+:root { --or: #B8925A; --creme: #FBF8F3; --encre: #1A1A1A; --gris: #6E6A63; --trait: #E6DFD3; --rouge: #B3261E; --vert: #2E7D4F; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--creme); color: var(--encre); font-size: 15px; line-height: 1.5; }
+a { color: var(--or); }
+.barre { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #fff; border-bottom: 1px solid var(--trait); }
+.marque { font-family: Georgia, serif; font-weight: 700; font-size: 22px; color: var(--encre); text-decoration: none; }
+.marque .i { color: var(--or); }
+.marque small { font-family: system-ui, sans-serif; font-weight: 400; font-size: 13px; color: var(--gris); margin-left: 8px; }
+main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+h1 { font-family: Georgia, serif; font-weight: 500; font-size: 28px; margin: 8px 0 20px; }
+h1 small { font-family: system-ui, sans-serif; font-size: 14px; color: var(--gris); font-weight: 400; }
+.carte { max-width: 460px; margin: 40px auto; background: #fff; border: 1px solid var(--trait); border-radius: 10px; padding: 28px; }
+.carte p { margin: 10px 0; }
+label { display: block; font-weight: 600; font-size: 13px; margin: 14px 0 6px; }
+input[type=password], input[type=text] { display: block; width: 100%; margin-top: 6px; padding: 10px 12px; border: 1px solid var(--trait); border-radius: 6px; font: inherit; background: var(--creme); }
+button { font: inherit; cursor: pointer; }
+.principal { display: inline-block; margin-top: 10px; background: var(--encre); color: #fff; border: 0; border-radius: 6px; padding: 10px 18px; font-weight: 600; text-decoration: none; }
+.secondaire { margin-top: 8px; background: #fff; color: var(--encre); border: 1px solid var(--or); border-radius: 6px; padding: 8px 14px; font-weight: 600; }
+.rouge { margin-top: 8px; background: var(--rouge); color: #fff; border: 0; border-radius: 6px; padding: 8px 14px; font-weight: 600; }
+.lien { background: none; border: 0; color: var(--gris); text-decoration: underline; }
+.erreur { color: var(--rouge); }
+.petit { font-size: 13px; color: var(--gris); }
+.message { background: #E8F3EC; color: var(--vert); padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+.liste { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--trait); border-radius: 10px; overflow: hidden; }
+.liste th, .liste td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+.liste th { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); }
+.liste small { color: var(--gris); }
+.rgpd { color: var(--rouge) !important; }
+.statut { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: #FDF3E1; color: #7A4B00; }
+.s-payee { background: #E6EEF8; color: #1F4E8C; }
+.s-publiee { background: #E8F3EC; color: var(--vert); }
+.fiche { display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: start; }
+.marche { list-style: none; background: #fff; border: 1px solid var(--trait); border-radius: 10px; padding: 6px 18px; }
+.marche li { padding: 14px 0; border-bottom: 1px solid var(--trait); }
+.marche li:last-child { border-bottom: 0; }
+.marche li.fait b:first-child::before { content: "✓ "; color: var(--vert); }
+.marche form { display: block; }
+.infos { display: grid; grid-template-columns: 90px 1fr; gap: 6px 12px; margin: 18px 0; font-size: 14px; }
+.infos dt { color: var(--gris); }
+.ligne { display: flex; gap: 8px; align-items: end; }
+.ligne label { flex: 1; margin: 0; }
+.danger { margin-top: 24px; font-size: 13px; color: var(--gris); }
+.danger summary { cursor: pointer; }
+.danger p { margin: 8px 0; }
+.apercu { position: sticky; top: 16px; height: calc(100vh - 120px); background: #fff; border: 1px solid var(--trait); border-radius: 10px; overflow: hidden; }
+.apercu iframe { width: 100%; height: 100%; border: 0; }
+@media (max-width: 900px) {
+  .fiche { grid-template-columns: 1fr; }
+  .apercu { position: static; height: 80vh; }
+  .liste th:nth-child(3), .liste td:nth-child(3) { display: none; }
+}

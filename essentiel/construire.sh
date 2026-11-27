@@ -4,6 +4,7 @@
 #   atelier/modele/       le modèle de site (aperçu)
 #   atelier/merci/        la page après paiement
 #   atelier/commande.php  la réception des commandes
+#   atelier/admin/        l espace privé d Ingrid (commandes, publication)
 set -e
 cd "$(dirname "$0")"
 rm -rf build && mkdir -p build/atelier
@@ -11,5 +12,6 @@ cp -r configurateur build/atelier/creer
 cp -r modele build/atelier/modele
 cp -r serveur/merci build/atelier/merci
 cp serveur/commande.php build/atelier/commande.php
+cp -r serveur/admin build/atelier/admin
 (cd build && zip -qr atelier.zip atelier)
 echo "Prêt : $(pwd)/build/atelier.zip"

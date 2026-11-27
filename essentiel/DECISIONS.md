@@ -31,6 +31,7 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - validée.
 - Phase 2 (configurateur) : `essentiel/configurateur/` - à valider. Aperçu en direct = vrai modèle. Brouillon gardé dans le navigateur. Champ e-mail ajouté à l'étape 6. Redirige vers le lien Stripe de test avec le numéro de commande ; l'envoi de la commande au serveur arrive en phase 3.
 - Phase 3 (commandes) : `essentiel/serveur/` - testée en local. `commande.php` enregistre la commande dans /home/<identifiant>/commandes-atelier/<numéro>/ (hors public_html, trouvé automatiquement), envoie un e-mail à contact@casori.fr, puis le couple part sur Stripe. Page `merci/`. `./construire.sh` assemble `build/atelier.zip` (à extraire dans public_html/, donne casori.fr/atelier/creer/).
+- Phase 4 (publication) : espace privé `atelier/admin/` (mot de passe, créé via le fichier « autoriser-installation » dans commandes-atelier). Liste des commandes, fiche en 5 étapes (paiement reçu, aperçu, .zip du site, en ligne, e-mail du lien au couple), rappel RGPD 3 mois après le mariage, suppression.
 - Le modèle contient un couple fictif (Léa & Jordi) et une photo neutre : jamais de données de vrais clients dans ce qui est publié.
 
 ## Stripe (mode test, compte « environnement de test Casori »)
