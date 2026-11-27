@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Atelier Casorí - votre site de mariage en 10 minutes</title>
+  <meta name="description" content="Créez vous-mêmes votre site de mariage avec L'Atelier Casorí : vos prénoms, votre programme, vos couleurs. Aperçu en direct, mise en ligne sous 7 jours.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="barre">
+    <div class="marque">Casor<span class="i">í</span></div>
+    <div class="accroche">L'Atelier - votre site de mariage en 10 minutes</div>
+    <div class="prix" id="prix">49 €</div>
+  </header>
+
+  <nav class="etapes-nav" id="etapes-nav">
+    <button data-e="1"><b>1</b><span class="lib">Vous deux</span></button>
+    <button data-e="2"><b>2</b><span class="lib">Le grand jour</span></button>
+    <button data-e="3"><b>3</b><span class="lib">Le programme</span></button>
+    <button data-e="4"><b>4</b><span class="lib">Votre style</span></button>
+    <button data-e="5"><b>5</b><span class="lib">Les réponses</span></button>
+    <button data-e="6"><b>6</b><span class="lib">Vérifier et publier</span></button>
+  </nav>
+
+  <div class="onglets-mobile" id="onglets-mobile">
+    <button class="actif" data-o="modifier">Modifier</button><button data-o="apercu">Aperçu</button>
+  </div>
+
+  <main class="atelier" id="atelier">
+
+    <section class="panneau" id="panneau">
+
+      <!-- Étape 1 -->
+      <div class="etape-contenu" data-e="1">
+        <p class="sur-titre">Étape 1 sur 6</p>
+        <h1>Vous deux</h1>
+        <p class="aide">Vos prénoms s'écrivent en calligraphie en haut de votre site.</p>
+
+        <div class="duo">
+          <label>Premier prénom<input type="text" id="prenom1" maxlength="20" autocomplete="off"></label>
+          <label>Second prénom<input type="text" id="prenom2" maxlength="20" autocomplete="off"></label>
+        </div>
+
+        <label for="photo-fichier">Votre photo</label>
+        <div class="photo-zone" id="photo-zone">
+          <img id="photo-vignette" alt="" hidden>
+          <div>
+            <p class="ok" id="photo-etat">Aucune photo pour l'instant</p>
+            <p class="petit">Une photo de vous deux. Nous la recadrons en carré, au centre.</p>
+            <label class="lien bouton-fichier">Choisir une photo<input type="file" id="photo-fichier" accept="image/jpeg,image/png,image/webp,image/heic"></label>
+          </div>
+        </div>
+
+        <label>Votre petit mot <span class="compteur" id="mot-compteur">0 / 300</span>
+          <textarea id="mot" rows="5" maxlength="300"></textarea>
+        </label>
+        <p class="astuce">Astuce : 2 ou 3 phrases suffisent. Racontez qui vous êtes, pas le programme.</p>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="etape-contenu" data-e="2">
+        <p class="sur-titre">Étape 2 sur 6</p>
+        <h1>Le grand jour</h1>
+        <p class="aide">La date et le lieu s'affichent sous vos prénoms.</p>
+
+        <label>Date du mariage<input type="date" id="date"></label>
+        <p class="rendu" id="date-rendu"></p>
+
+        <label>Lieu de la fête<input type="text" id="lieu" maxlength="60" placeholder="ex. Mas Puig"></label>
+        <label>Ville<input type="text" id="ville" maxlength="60" placeholder="ex. Saint-Génis-des-Fontaines"></label>
+        <p class="rendu" id="lieu-rendu"></p>
+      </div>
+
+      <!-- Étape 3 -->
+      <div class="etape-contenu" data-e="3">
+        <p class="sur-titre">Étape 3 sur 6</p>
+        <h1>Le programme</h1>
+        <p class="aide">Les grands moments de la journée. Le lien d'itinéraire se crée tout seul à partir de l'adresse.</p>
+
+        <div id="programme"></div>
+        <button class="ajouter" id="ajouter-moment">+ Ajouter un moment <span>(5 maximum)</span></button>
+
+        <label>Petite note sous le programme <span class="compteur">facultatif</span>
+          <input type="text" id="note" maxlength="140" placeholder="ex. Le domaine n'accepte pas les animaux.">
+        </label>
+      </div>
+
+      <!-- Étape 4 -->
+      <div class="etape-contenu" data-e="4">
+        <p class="sur-titre">Étape 4 sur 6</p>
+        <h1>Votre style</h1>
+        <p class="aide">Choisissez une palette et un motif. Tout le site s'accorde automatiquement.</p>
+
+        <label>Palette</label>
+        <div class="palettes" id="palettes">
+          <button class="palette" data-p="sauge"><span class="pastilles"><i style="background:#E7E2D6"></i><i style="background:#6F7F62"></i><i style="background:#D4A6A6"></i></span>Sauge &amp; rose ancien</button>
+          <button class="palette" data-p="terracotta"><span class="pastilles"><i style="background:#F1E6D8"></i><i style="background:#9A5434"></i><i style="background:#D9A27E"></i></span>Terracotta &amp; sable</button>
+          <button class="palette" data-p="mediterranee"><span class="pastilles"><i style="background:#E5EAEF"></i><i style="background:#2F4F6F"></i><i style="background:#D9A441"></i></span>Méditerranée &amp; ocre</button>
+          <button class="palette" data-p="bordeaux"><span class="pastilles"><i style="background:#F3ECE3"></i><i style="background:#6E1F2F"></i><i style="background:#C9A97A"></i></span>Bordeaux &amp; champagne</button>
+          <button class="palette perso" data-p="perso"><span class="pastilles"><i class="arc"></i></span>Mes couleurs</button>
+        </div>
+        <div class="perso-choix" id="perso-choix">
+          <div class="duo">
+            <label>Couleur principale<span class="couleur"><input type="color" id="couleur1" value="#2E6B5E"><input type="text" id="couleur1-code" value="#2E6B5E" maxlength="7"></span></label>
+            <label>Couleur d'accent<span class="couleur"><input type="color" id="couleur2" value="#E0A458"><input type="text" id="couleur2-code" value="#E0A458" maxlength="7"></span></label>
+          </div>
+          <p class="petit">Le fond et les teintes de texte sont calculés pour vous. Une couleur trop claire pour être lue est légèrement assombrie.</p>
+          <p class="alerte" id="alerte-clair" hidden>Vos couleurs sont très claires : le rendu sera discret.</p>
+        </div>
+
+        <label>Motif</label>
+        <div class="motifs" id="motifs">
+          <button class="motif" data-m="brin"><img src="../modele/assets/motif-brin.webp" alt=""><span>Bouquet</span></button>
+          <button class="motif" data-m="olivier"><img src="../modele/assets/motif-olivier.webp" alt=""><span>Olivier</span></button>
+          <button class="motif" data-m="bougainvillier"><img src="../modele/assets/motif-bougainvillier.webp" alt=""><span>Bougainvillier</span></button>
+          <button class="motif vide" data-m="perso"><span class="a-venir"><b class="plus">+</b><br>Votre motif<br><em class="or">+10 €</em></span></button>
+        </div>
+        <div class="variantes" id="variantes">
+          <span>Disposition :</span>
+          <button data-v="coin">Un coin</button><button data-v="deux">Deux coins</button>
+        </div>
+        <div class="perso-choix" id="motif-perso-choix">
+          <p class="petit"><b>Votre motif (+10 €)</b> : idéalement un PNG à fond transparent, d'au moins 500 px de large. Il s'affiche au-dessus de vos prénoms.</p>
+          <label class="lien bouton-fichier">Choisir mon motif<input type="file" id="motif-fichier" accept="image/png,image/webp,image/jpeg"></label>
+          <p class="alerte" id="motif-message" hidden></p>
+          <button class="secondaire" id="retirer-blanc" hidden>Retirer le fond blanc</button>
+          <label class="case"><input type="checkbox" id="motif-droits"> <span>Nous disposons des droits sur cette image (dessin personnel, achat avec licence…).</span></label>
+        </div>
+      </div>
+
+      <!-- Étape 5 -->
+      <div class="etape-contenu" data-e="5">
+        <p class="sur-titre">Étape 5 sur 6</p>
+        <h1>Les réponses</h1>
+        <p class="aide">Vos invités répondent via un formulaire Google, et vous retrouvez toutes les réponses dans un tableau.</p>
+
+        <label>Répondre avant le<input type="date" id="rsvp-avant"></label>
+        <label>Lien de votre formulaire de réponse<input type="url" id="rsvp-lien" placeholder="https://forms.gle/..."></label>
+
+        <div class="aide-encart">
+          <p><b>Pas encore de formulaire ?</b> Copiez notre modèle prêt à l'emploi (présence, nombre de personnes, régime alimentaire) en un clic, puis collez son lien ci-dessus.</p>
+          <!-- Lien du modèle Google Form Casorí à coller ici quand il sera créé (…/copy) -->
+          <a href="#" class="lien" id="modele-form" target="_blank" rel="noopener">Copier le modèle Casorí</a>
+          <p class="petit">Vous pourrez le compléter plus tard : le lien ne change pas.</p>
+        </div>
+      </div>
+
+      <!-- Étape 6 -->
+      <div class="etape-contenu" data-e="6">
+        <p class="sur-titre">Étape 6 sur 6</p>
+        <h1>Vérifier et publier</h1>
+        <p class="aide">Parcourez votre site : il sera publié exactement comme vous le voyez.</p>
+
+        <ul class="recap">
+          <li><span>Adresse de votre site</span><b id="recap-adresse"></b></li>
+          <li><span>Mise en ligne</span><b>sous 7 jours après paiement</b></li>
+          <li><span>En ligne jusqu'au</span><b id="recap-fin">1 an après votre mariage</b></li>
+          <li><span>Total</span><b id="recap-total">49 €</b></li>
+        </ul>
+
+        <ul class="manques" id="manques" hidden></ul>
+
+        <label>Votre e-mail<input type="email" id="email" autocomplete="email" placeholder="pour recevoir la confirmation et le lien de votre site"></label>
+
+        <div class="cases">
+          <label class="case"><input type="checkbox" id="ok-relu"> <span>J'ai relu mon site : prénoms, date, lieux, horaires et liens.</span></label>
+          <label class="case"><input type="checkbox" id="ok-modif"> <span>J'ai compris qu'aucune modification n'est possible après validation, sauf correction d'une coquille.</span></label>
+          <label class="case"><input type="checkbox" id="ok-cgv"> <span>J'accepte les <a href="https://casori.fr/atelier/cgv/" class="lien" target="_blank" rel="noopener">conditions générales de vente</a>.</span></label>
+        </div>
+
+        <button class="payer" id="payer" disabled>Payer 49 € et publier mon site</button>
+        <p class="securise">Paiement sécurisé par Stripe - carte bancaire</p>
+        <p class="alerte" id="message-envoi" hidden></p>
+
+        <div class="passerelle">
+          <p><b>Envie d'un site plus personnel ?</b> Rubriques au choix, plusieurs langues, faire-part assorti : découvrez nos formules accompagnées. <span class="or">Vos 49 € sont déduits.</span></p>
+          <a href="https://casori.fr/formules.html" class="lien">Voir les formules</a>
+        </div>
+      </div>
+
+      <div class="navigation" id="navigation">
+        <button class="retour" id="retour">Retour</button>
+        <button class="suivant" id="suivant">Étape suivante</button>
+      </div>
+    </section>
+
+    <section class="apercu" id="apercu">
+      <div class="apercu-tete">
+        <span class="direct"><i></i> Aperçu en direct</span>
+        <div class="bascule" id="bascule"><button class="actif" data-v="ordi">Ordinateur</button><button data-v="tel">Téléphone</button></div>
+      </div>
+      <div class="ecran" id="ecran">
+        <div class="navigateur" id="navigateur">
+          <div class="navigateur-barre"><i></i><i></i><i></i><span id="adresse-barre">mariages.casori.fr/…</span></div>
+          <div class="cadre-ordi" id="cadre-ordi"><iframe id="site" title="Aperçu de votre site"></iframe></div>
+        </div>
+        <div class="telephone" id="telephone" hidden><iframe id="site-tel" title="Aperçu téléphone"></iframe></div>
+      </div>
+      <p class="garantie">Ce que vous voyez est exactement ce qui sera publié.</p>
+    </section>
+  </main>
+
+  <script src="configurateur.js"></script>
+</body>
+</html>

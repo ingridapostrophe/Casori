@@ -47,7 +47,8 @@
     document.body.dataset.palette = STYLE.palette;
   }
 
-  const fichierMotif = 'assets/motif-' + STYLE.motif + (STYLE.motif === 'perso' ? '.png' : '.webp');
+  /* motifSrc : image envoyée par le configurateur pour l'aperçu (sinon le fichier du site) */
+  const fichierMotif = STYLE.motifSrc || ('assets/motif-' + STYLE.motif + (STYLE.motif === 'perso' ? '.png' : '.webp'));
   const enTete = $('motif-entete'), section = $('motif-section');
   section.src = fichierMotif;
   if (STYLE.motif === 'bougainvillier') {
@@ -79,6 +80,7 @@
 
   $('date-longue').textContent = dateLongue(TARGET);
   $('lieu').textContent = [COUPLE.lieu, COUPLE.ville].filter(Boolean).join(' - ');
+  if (COUPLE.photo) $('photo').src = COUPLE.photo;   /* aperçu du configurateur */
   $('photo').alt = COUPLE.photoAlt || '';
   $('mot').textContent = COUPLE.mot;
 
@@ -101,7 +103,7 @@
   });
   if (COUPLE.note) $('note').textContent = COUPLE.note; else $('note').remove();
 
-  $('rsvp-texte').textContent = 'Merci de répondre avant le ' + dateSimple(COUPLE.rsvpAvant);
+  $('rsvp-texte').textContent = COUPLE.rsvpAvant ? 'Merci de répondre avant le ' + dateSimple(COUPLE.rsvpAvant) : '';
   $('lien-rsvp').href = COUPLE.rsvpLien;
 
   const pied = $('prenoms-pied');

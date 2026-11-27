@@ -29,7 +29,8 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 
 ## Avancement
 - Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - validée.
-- Phase 2 : configurateur. Afficher « Vos couleurs sont très claires, le rendu sera discret » si besoin.
+- Phase 2 (configurateur) : `essentiel/configurateur/` - à valider. Aperçu en direct = vrai modèle. Brouillon gardé dans le navigateur. Champ e-mail ajouté à l'étape 6. Redirige vers le lien Stripe de test avec le numéro de commande ; l'envoi de la commande au serveur arrive en phase 3.
+- Le modèle contient un couple fictif (Léa & Jordi) et une photo neutre : jamais de données de vrais clients dans ce qui est publié.
 
 ## Stripe (mode test, compte « environnement de test Casori »)
 - Catalogue : 13 produits (L'Atelier 49 €, option motif 10 €, Digital 290 €, Complète 590 €, options à la carte).

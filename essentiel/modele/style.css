@@ -188,6 +188,11 @@ a { color: inherit; }
   .pied .prenoms-pied { font-size: 38px; }
 }
 
+/* Aperçu du configurateur : pas d'animation à chaque frappe */
+[data-apercu="calme"] * { animation: none !important; }
+[data-apercu="calme"] .trait, [data-apercu="calme"] .date, [data-apercu="calme"] .lieu,
+[data-apercu="calme"] .motif-entete, [data-apercu="calme"] .coin { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; }
   .trait, .date, .lieu, .motif-entete, .coin { opacity: 1; }
