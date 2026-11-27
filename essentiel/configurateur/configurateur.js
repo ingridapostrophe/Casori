@@ -199,7 +199,9 @@
     }
     if (n === 5) {
       if (!E.rsvpAvant) m.push(['rsvp-avant', 'Indiquez la date limite de réponse.']);
-      if (!/^https:\/\/\S+\.\S+/.test(E.rsvpLien.trim())) m.push(['rsvp-lien', 'Collez le lien de votre formulaire (il commence par https://).']);
+      const l = E.rsvpLien.trim();
+      if (!/^https:\/\/\S+\.\S+/.test(l)) m.push(['rsvp-lien', 'Collez le lien de votre formulaire (il commence par https://).']);
+      else if (/docs\.google\.com\/forms\/.*\/(edit|copy)/.test(l)) m.push(['rsvp-lien', 'Ce lien sert à modifier le formulaire, pas à y répondre. Dans votre formulaire, cliquez sur « Envoyer », puis sur l\'icône lien, et copiez le lien qui commence par https://forms.gle/.']);
     }
     return m;
   }

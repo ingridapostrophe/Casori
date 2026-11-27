@@ -282,3 +282,5 @@ input[type="time"], input[type="date"], input[type="email"], input[type="url"] {
 .payer:disabled { background: #BDB6AA; cursor: not-allowed; }
 .telephone iframe { height: calc(100% / 0.786); }
 .piege { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.pas { margin: 6px 0 10px 18px; padding: 0; }
+.pas li { margin: 6px 0; }
