@@ -1,12 +1,13 @@
 /**
- * Casorí - crée le modèle de formulaire de réponse (RSVP) de l'Atelier.
+ * Casorí - crée le modèle de formulaire de réponse (RSVP) de l'Atelier - version 2.
  *
  * Mode d'emploi :
- * 1. Aller sur https://script.google.com (compte Google de Casorí) > « Nouveau projet ».
- * 2. Tout effacer, coller ce fichier, cliquer sur la disquette (Enregistrer).
- * 3. Choisir la fonction « creerModeleCasori » en haut, puis cliquer sur « Exécuter ».
- * 4. Accepter les autorisations demandées (Formulaires et Drive de votre compte).
- * 5. Les liens s'affichent dans le « Journal d'exécution » en bas.
+ * 1. https://script.google.com > ouvrir le projet existant (ou « Nouveau projet »).
+ * 2. Tout effacer, coller ce fichier, Enregistrer (disquette).
+ * 3. Fonction « creerModeleCasori » > « Exécuter » (les autorisations sont déjà données).
+ * 4. Les liens s'affichent dans le « Journal d'exécution ».
+ * Couleurs, police et image d'en-tête se règlent ensuite à la main (icône palette) :
+ * Google ne permet pas de les régler par script.
  */
 function creerModeleCasori() {
   const form = FormApp.create('Serez-vous des nôtres ?');
@@ -17,35 +18,43 @@ function creerModeleCasori() {
       .setProgressBar(false)
       .setConfirmationMessage('Merci, votre réponse est bien enregistrée ! À très vite.');
 
+  const nombre = (min) => FormApp.createTextValidation()
+      .requireNumberBetween(min, 30)
+      .setHelpText('Indiquez un nombre, par exemple 2.')
+      .build();
+
   // Section 1 : qui répond, et est-ce qu'il vient ?
-  form.addTextItem().setTitle('Vos prénom et nom').setRequired(true);
+  form.addTextItem().setTitle('Votre nom').setHelpText('Ou celui de votre famille.').setRequired(true);
   const presence = form.addMultipleChoiceItem().setTitle('Serez-vous des nôtres ?').setRequired(true);
 
   // Section 2 : pour ceux qui viennent
   const sectionVenue = form.addPageBreakItem().setTitle('Votre venue');
-  form.addListItem().setTitle('Combien serez-vous, en vous comptant ?')
-      .setChoiceValues(['1', '2', '3', '4', '5', '6']).setRequired(true);
-  form.addParagraphTextItem().setTitle('Prénoms des personnes qui vous accompagnent');
-  form.addParagraphTextItem().setTitle('Allergies ou régime alimentaire particulier');
+  form.addCheckboxItem().setTitle('À quels moments serez-vous présents ?')
+      .setChoiceValues(['Cérémonie', "Vin d'honneur", 'Dîner et soirée', 'Brunch du lendemain'])
+      .setRequired(true);
+  form.addTextItem().setTitle("Nombre d'adultes, en vous comptant").setValidation(nombre(1)).setRequired(true);
+  form.addTextItem().setTitle("Nombre d'enfants").setValidation(nombre(0)).setRequired(true);
+  form.addParagraphTextItem().setTitle('Prénoms des personnes présentes');
+  form.addCheckboxItem().setTitle('Régime alimentaire')
+      .setChoiceValues(['Aucun', 'Végétarien', 'Végan', 'Sans gluten'])
+      .showOtherOption(true);
+  form.addTextItem().setTitle('Allergies à signaler');
+  form.addTextItem().setTitle('La chanson qui vous fera danser');
 
   // Section 3 : pour tout le monde
   const sectionMot = form.addPageBreakItem().setTitle('Un dernier mot');
   form.addParagraphTextItem().setTitle('Un petit mot pour les mariés');
 
-  // « Non » mène directement au petit mot, sans les questions de venue
+  // « Non » mène directement au petit mot
   presence.setChoices([
     presence.createChoice('Oui, avec joie !', sectionVenue),
     presence.createChoice('Non, malheureusement', sectionMot)
   ]);
 
   // Partage en lecture seule : les couples ne peuvent qu'en faire une copie
-  const fichier = DriveApp.getFileById(form.getId());
-  fichier.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  DriveApp.getFileById(form.getId()).setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
 
-  const modifier = form.getEditUrl();
-  const copie = 'https://docs.google.com/forms/d/' + form.getId() + '/copy';
-  Logger.log('Formulaire créé.');
-  Logger.log('Pour le modifier (vous seule) : ' + modifier);
-  Logger.log('Lien « copie » pour le configurateur : ' + copie);
+  Logger.log('Pour le modifier (vous seule) : ' + form.getEditUrl());
+  Logger.log('Lien « copie » pour le configurateur : https://docs.google.com/forms/d/' + form.getId() + '/copy');
   Logger.log('Lien pour y répondre (test) : ' + form.getPublishedUrl());
 }
