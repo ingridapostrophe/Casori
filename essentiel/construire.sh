@@ -1,17 +1,21 @@
 #!/bin/bash
-# Assemble le dossier atelier/ à déposer dans public_html/ (casori.fr/atelier/)
-#   atelier/creer/        le configurateur
-#   atelier/modele/       le modèle de site (aperçu)
-#   atelier/merci/        la page après paiement
-#   atelier/commande.php  la réception des commandes
-#   atelier/admin/        l espace privé d Ingrid (commandes, publication)
+# Assemble tout le contenu de public_html (site vitrine + l'Atelier), prêt à extraire.
+#   site-vitrine/           -> public_html/ (dont atelier/index.html : la page de présentation)
+#   atelier/creer/          le configurateur
+#   atelier/modele/         le modèle de site (aperçu)
+#   atelier/merci/          la page après paiement
+#   atelier/commande.php    la réception des commandes
+#   atelier/admin/          l'espace privé d'Ingrid (commandes, publication)
 set -e
 cd "$(dirname "$0")"
-rm -rf build && mkdir -p build/atelier
-cp -r configurateur build/atelier/creer
-cp -r modele build/atelier/modele
-cp -r serveur/merci build/atelier/merci
-cp serveur/commande.php build/atelier/commande.php
-cp -r serveur/admin build/atelier/admin
-(cd build && zip -qr atelier.zip atelier)
-echo "Prêt : $(pwd)/build/atelier.zip"
+rm -rf build && mkdir -p build/public_html
+cp -r ../site-vitrine/. build/public_html/
+A=build/public_html/atelier
+mkdir -p $A
+cp -r configurateur $A/creer
+cp -r modele $A/modele
+cp -r serveur/merci $A/merci
+cp serveur/commande.php $A/commande.php
+cp -r serveur/admin $A/admin
+(cd build/public_html && zip -qr ../casori-public_html.zip .)
+echo "Prêt : $(pwd)/build/casori-public_html.zip"
