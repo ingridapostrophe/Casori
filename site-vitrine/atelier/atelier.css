@@ -14,14 +14,28 @@
 .at-prix-note { font-size: 13px; color: var(--gris-clair); }
 .at-hero-tel { display: flex; justify-content: center; }
 .at-hero-tel .theme-ecran { max-width: 250px; }
-/* le téléphone de l'en-tête défile tout seul, en boucle */
-.at-hero-tel .theme-screen img { animation: at-defile 26s ease-in-out 1.5s infinite alternate; }
-@keyframes at-defile { to { transform: translateY(calc(-100% + 100cqh)); } }
+/* le téléphone de l'en-tête : les 4 styles en fondu, chacun défile doucement */
+.at-hero-tel { flex-direction: column; align-items: center; }
+.at-diapo img { opacity: 0; transition: opacity 0.9s ease; }
+.at-diapo img.visible { opacity: 1; animation: at-defile 6.5s ease-in-out 0.6s forwards; }
+@keyframes at-defile { to { transform: translateY(calc(-45% + 100cqh)); } }
+.at-pastilles { display: flex; gap: 10px; margin-top: 18px; }
+.at-pastilles button {
+  width: 22px; height: 22px; border-radius: 50%; cursor: pointer; padding: 0;
+  border: 2px solid #fff; box-shadow: 0 0 0 1px var(--bordure);
+  background: linear-gradient(135deg, var(--c1) 50%, var(--c2) 50%);
+}
+.at-pastilles button.actif { box-shadow: 0 0 0 2px var(--or); }
+.at-diapo-nom { margin: 8px 0 0; font-family: var(--serif); font-size: 14px; color: var(--gris-texte); }
 
 .at-etapes { grid-template-columns: repeat(3, 1fr); max-width: 760px; margin-left: auto; margin-right: auto; }
 
 .at-sous-titre { font-size: 14px; color: var(--gris-texte); max-width: 440px; margin: 0 auto; }
-.at-styles { grid-template-columns: repeat(4, 1fr); max-width: 920px; }
+.at-palettes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 760px; margin: 28px auto 0; }
+.at-palettes > div { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--bordure); border-radius: 99px; padding: 8px 16px 8px 8px; font-size: 13px; }
+.at-rond { width: 30px; height: 30px; border-radius: 50%; flex: none; background: conic-gradient(var(--c2) 0 50%, var(--c3) 0 75%, var(--c1) 0); box-shadow: inset 0 0 0 1px var(--bordure); }
+.at-rond.arc { background: conic-gradient(#C0392B, #E0A458, #6F7F62, #2F4F6F, #8E5BB5, #C0392B); }
+.at-vos-couleurs { border-style: dashed !important; }
 
 .at-motifs {
   display: grid;
@@ -71,11 +85,13 @@
   max-width: 760px;
   margin: 40px auto;
   padding: 32px;
-  background: var(--creme-fonce);
+  background: #F4EADB;
+  border: 1px solid #E6D3B5;
   border-radius: 14px;
 }
 .at-derriere img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
-.at-derriere p { margin: 0 0 12px; color: var(--gris-texte); }
+.at-derriere p { margin: 0 0 12px; color: var(--encre); }
+.at-derriere b { font-weight: 600; }
 .at-derriere .surtitre { margin-bottom: 10px; }
 
 .at-faq { max-width: 720px; margin: 0 auto; padding: 32px 0; }
@@ -95,7 +111,6 @@
   .at-intro { margin-left: auto; margin-right: auto; }
   .at-prix { justify-content: center; }
   .at-hero-tel .theme-ecran { max-width: 210px; }
-  .at-styles { grid-template-columns: repeat(2, 1fr); max-width: 460px; }
   .at-inclus { grid-template-columns: 1fr; }
   .at-derriere { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   .at-derriere img { max-width: 180px; }
@@ -105,5 +120,5 @@
   .at-motifs { grid-template-columns: repeat(2, 1fr); max-width: 320px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .at-hero-tel .theme-screen img { animation: none; }
+  .at-diapo img.visible { animation: none; }
 }
