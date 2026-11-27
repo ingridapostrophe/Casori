@@ -7,10 +7,12 @@
 
   /* ---------- Réglages ---------- */
   const PRIX = { base: 49, motif: 10 };
-  /* Liens de paiement Stripe (MODE TEST - à remplacer par les liens réels au lancement) */
+  /* Liens de paiement Stripe - MODE RÉEL (compte Casori).
+     Liens de test, pour mémoire : base https://buy.stripe.com/test_5kQ8wRd8zdZO1rs2MT8Vi00
+                                   motif https://buy.stripe.com/test_cNi9AV6Kbf3SeeeevB8Vi01 */
   const LIENS_STRIPE = {
-    base: 'https://buy.stripe.com/test_5kQ8wRd8zdZO1rs2MT8Vi00',
-    motif: 'https://buy.stripe.com/test_cNi9AV6Kbf3SeeeevB8Vi01'
+    base: 'https://buy.stripe.com/6oUdRafsV9WCfYzc1v24000',
+    motif: 'https://buy.stripe.com/7sY00kbcFc4K8w79Tn24001'
   };
   const CLE_BROUILLON = 'casori-atelier-brouillon';
   const MAX_MOMENTS = 5;

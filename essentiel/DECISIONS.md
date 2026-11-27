@@ -42,7 +42,10 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
   - Le configurateur ajoute ?client_reference_id=<n° de commande>&prefilled_email=<e-mail>.
 - Paiement test réussi (59 €, facture générée, pied de page validé par Ingrid).
 - À faire plus tard, ensemble et écran par écran (à partir de captures d'Ingrid) : factures en A4, délai de paiement des factures manuelles, logo et couleur #B8925A, notification de paiement. Si le réglage A4 est introuvable, le forcer par API sur chaque facture.
-- À recréer en mode réel au lancement.
+- MODE RÉEL (compte « Casori », fait le 27/11/2026) : catalogue des 13 produits recréé ; liens de paiement branchés dans le configurateur :
+  - 49 € : https://buy.stripe.com/6oUdRafsV9WCfYzc1v24000 (plink_1UgPcCLcrAvLUgp1Q1TK8A9Q)
+  - 59 € avec motif : https://buy.stripe.com/7sY00kbcFc4K8w79Tn24001 (plink_1UgPcGLcrAvLUgp1ujQWVz9M)
+  - Pied de facture : TVA 293 B, Ingrid Andriessens (EI), adresse, SIRET, MCP Médiation.
 
 ## Phase 5 (mise en ligne) - en cours
 - Page de présentation `site-vitrine/atelier/` : un téléphone qui alterne les 4 styles (photo du thème Minimalist), palettes en pastilles, inclus / pas inclus, « Derrière l'Atelier » (fond doré, photo d'Ingrid), FAQ. Lien « L'Atelier » ajouté aux menus des pages FR. Français uniquement pour l'instant.
