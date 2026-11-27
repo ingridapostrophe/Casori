@@ -52,7 +52,7 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - CGV `site-vitrine/atelier/cgv/` rédigées, à relire par Ingrid. Case « renonciation au droit de rétractation » ajoutée à l'étape 6 du configurateur.
 - `./construire.sh` assemble désormais tout public_html (site vitrine + atelier) dans `build/casori-public_html.zip`.
 
-- Modèle Google Form créé (27/11/2026) par `outils/modele-formulaire.gs`, partagé en lecture seule. Lien copie : https://docs.google.com/forms/d/197Cq5lqxhOFpi3_c_wJAmvHSEkYllpXUS2rzFhw8Mz4/copy (branché à l'étape 5).
+- Modèle Google Form créé (27/11/2026) par `outils/modele-formulaire.gs`, partagé en lecture seule. Lien copie : https://docs.google.com/forms/d/1E2JAXv6xWyqx_L6Dx_xS1RaIY9I1l-wKdfTHS4f1WHE/copy (branché à l'étape 5).
 
 ## Ouvert
 - Vérifier la licence des visuels issus de Canva.
