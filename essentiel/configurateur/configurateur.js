@@ -481,7 +481,7 @@
     const r = await fetch('../commande.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...commande, zx_controle: $('zx-controle').value })
+      body: JSON.stringify(commande)
     });
     const rep = await r.json().catch(() => ({}));
     if (!r.ok || !rep.ok) throw new Error(rep.erreur || 'envoi');

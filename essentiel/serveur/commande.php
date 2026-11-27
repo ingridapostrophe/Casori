@@ -54,9 +54,10 @@ if ($brut === false || strlen($brut) > TAILLE_MAX) repondre(413, ['ok' => false,
 $c = json_decode($brut, true);
 if (!is_array($c)) repondre(400, ['ok' => false, 'erreur' => 'format']);
 
-/* Champ piège anti-robots : rempli = probablement un robot.
-   On ne jette jamais la commande : elle est enregistrée et signalée « à vérifier ». */
-$suspect = !empty($c['zx_controle']);
+/* Pas de champ piège : les gestionnaires de mots de passe le remplissaient.
+   Protections : origine casori.fr, limite par connexion, validation des données,
+   et surtout aucune publication sans paiement Stripe vérifié par Ingrid. */
+$suspect = false;
 
 /* ---------- Dossier des commandes ---------- */
 if (!is_dir($DOSSIER) && !@mkdir($DOSSIER, 0700, true)) repondre(500, ['ok' => false, 'erreur' => 'dossier']);
