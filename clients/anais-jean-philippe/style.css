@@ -1,0 +1,278 @@
+/* Casorí - formule simple - Anaïs & Jean-Philippe */
+
+/* Polices hébergées avec le site (pas d'appel à Google Fonts) */
+@font-face { font-family: 'Allura'; src: url('assets/fonts/Allura-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url('assets/fonts/Fraunces-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+
+:root {
+  --fond: #E7E2D6;        /* beige clair - fonds en-tête et RSVP */
+  --sauge: #A8B39A;       /* vert du couple - décor */
+  --rose: #D4A6A6;        /* rose ancien - traits, bouton */
+  --titre: #6F7F62;       /* sauge foncé - prénoms, titres */
+  --texte: #4A5640;       /* sauge très foncé - date, lieux, horaires */
+  --corps: #3E3E3A;       /* texte courant */
+  --rose-fonce: #C28A8A;  /* rose pour l'esperluette (grand caractère) */
+  --rose-texte: #A06A6A;  /* rose lisible pour les petits textes */
+  --or-casori: #B8925A;
+  --blanc: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--corps);
+  background: var(--blanc);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.calli { font-family: 'Allura', cursive; font-weight: 400; }
+
+/* ---------- En-tête ---------- */
+.entete {
+  position: relative;
+  background: var(--fond);
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  overflow: hidden;
+}
+
+.bloc-titre { position: relative; }
+
+.brin.brin-entete {
+  width: 160px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: apparaitre 1s ease-out 0.2s forwards;
+}
+
+.prenoms {
+  position: relative;
+  color: var(--titre);
+  font-size: clamp(52px, 10vw, 110px);
+  line-height: 1.05;
+}
+.prenoms svg { width: min(86vw, 620px); height: auto; display: block; margin: 0 auto; }
+.prenoms .esperluette { display: block; font-size: 0.6em; line-height: 1; margin: 4px 0; color: var(--rose-fonce); }
+.esperluette-pied { color: var(--rose-fonce); }
+
+/* Animation provisoire : apparition de gauche à droite (remplacée par le tracé SVG) */
+.prenoms.texte-provisoire { animation: devoiler 2.6s ease-out both; }
+@keyframes devoiler {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Écriture à la plume : un pinceau masqué suit chaque trait (généré par generer_prenoms.py) */
+.prenoms svg path { fill: var(--titre); }
+.prenoms svg .esp path { fill: var(--rose-fonce); }
+.prenoms svg path.plume {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation-name: ecrire;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes ecrire { to { stroke-dashoffset: 0; } }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.trait {
+  width: 64px;
+  height: 2px;
+  background: var(--rose);
+  margin: 28px auto 22px;
+  opacity: 0;
+  animation: apparaitre 0.8s ease-out 4.1s forwards;
+}
+
+.date {
+  font-size: 15px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--texte);
+  opacity: 0;
+  animation: apparaitre 0.8s ease-out 4.4s forwards;
+}
+
+.lieu {
+  margin-top: 8px;
+  font-size: 17px;
+  color: var(--texte);
+  opacity: 0;
+  animation: apparaitre 0.8s ease-out 4.7s forwards;
+}
+
+@keyframes apparaitre { to { opacity: 1; } }
+
+/* ---------- Le couple ---------- */
+.couple {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 96px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.couple .photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: var(--fond);
+}
+
+.couple .mot {
+  font-size: 19px;
+  line-height: 1.8;
+  font-style: italic;
+  color: var(--corps);
+}
+
+/* ---------- Programme ---------- */
+.programme {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 32px 96px;
+  text-align: center;
+}
+
+.brin { width: 120px; margin: 0 auto 4px; display: block; }
+
+.titre-section {
+  color: var(--titre);
+  font-size: clamp(44px, 7vw, 60px);
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+
+.etapes { list-style: none; text-align: left; }
+
+.etape {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 22px 0;
+  border-top: 1px solid #EBD6D6;
+}
+.etape:last-child { border-bottom: 1px solid #EBD6D6; }
+
+.heure {
+  font-family: 'Allura', cursive;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--titre);
+}
+.etape h3 { font-size: 19px; font-weight: 500; color: var(--texte); }
+.etape h3::before {
+  content: "";
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--rose);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.etape .adresse { font-size: 15px; color: #6B6B64; margin-top: 2px; }
+
+.carte {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--texte);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rose);
+  padding-bottom: 1px;
+}
+.carte:hover { border-bottom-color: var(--texte); }
+
+.note {
+  margin-top: 28px;
+  font-size: 14px;
+  font-style: italic;
+  color: #6B6B64;
+}
+
+/* ---------- RSVP ---------- */
+.rsvp {
+  background: var(--fond);
+  text-align: center;
+  padding: 88px 24px;
+}
+
+.rsvp p { color: var(--texte); font-size: 16px; margin: -16px 0 32px; }
+
+.bouton {
+  display: inline-block;
+  background: var(--rose);
+  color: #3F4A37;
+  text-decoration: none;
+  padding: 16px 44px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.bouton:hover { background: #C99797; }
+
+/* ---------- Pied de page ---------- */
+.pied {
+  text-align: center;
+  padding: 64px 24px 28px;
+}
+.pied .prenoms-pied { color: var(--titre); font-size: 46px; line-height: 1.1; }
+.pied .date-pied {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--rose-texte);
+  margin-top: 8px;
+}
+.signature {
+  max-width: 360px;
+  margin: 40px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid #E4DED2;
+  font-size: 13px;
+  color: #8A8A84;
+}
+.signature a { text-decoration: none; color: #1A1A1A; font-weight: 500; }
+.signature .accent { color: var(--or-casori); }
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 720px) {
+  .entete { min-height: 85vh; padding: 48px 12px; }
+  .brin.brin-entete { width: 140px; }
+  .heure { font-size: 28px; }
+  .couple { grid-template-columns: 1fr; gap: 32px; padding: 64px 24px; }
+  .couple .mot { font-size: 17px; text-align: center; }
+  .programme { padding: 16px 24px 72px; }
+  .etape { grid-template-columns: 70px 1fr; }
+  .heure, .etape h3 { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+  .trait, .date, .lieu, .brin-entete { opacity: 1; }
+  .prenoms svg path.plume { stroke-dashoffset: 0 !important; }
+}
+
+@media (max-width: 420px) {
+  .pied .prenoms-pied { font-size: 38px; }
+}
