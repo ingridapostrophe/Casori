@@ -57,4 +57,10 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- L'Atelier (français uniquement pour l'instant) -->
+  <url>
+    <loc>https://casori.fr/atelier/</loc>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

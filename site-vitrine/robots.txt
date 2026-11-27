@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /atelier/admin/
+Disallow: /atelier/merci/
+Disallow: /atelier/modele/
+Disallow: /atelier/commande.php
 
 Sitemap: https://casori.fr/sitemap.xml
