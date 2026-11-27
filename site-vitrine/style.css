@@ -687,3 +687,5 @@ img { max-width: 100%; display: block; }
   .site-header { justify-content: center; padding: 16px 16px 14px; }
   .nav { flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
 }
+
+.note-etapes { font-size: 13px; color: var(--gris-clair); margin: -6px 0 0; }

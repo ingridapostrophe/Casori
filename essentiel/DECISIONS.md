@@ -54,6 +54,11 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 
 - Modèle Google Form créé (27/11/2026) par `outils/modele-formulaire.gs`, partagé en lecture seule. Lien copie : https://docs.google.com/forms/d/1E2JAXv6xWyqx_L6Dx_xS1RaIY9I1l-wKdfTHS4f1WHE/copy (branché à l'étape 5).
 
+## Cohérence de l'offre (27/11/2026)
+- Deux chemins : « vous le créez vous-mêmes » (l'Atelier, 49 €) ou « nous le composons avec vous » (290 €, 590 €, sur devis).
+- Un seul mot pour le produit : « site de mariage » (« faire-part » réservé au papier), dans les 4 langues (EN website, ES web de boda, CA web de casament - catalan à faire relire). Les supports imprimés (roll-up, cartes) disent encore « mini-sites ».
+- Page Formules : titre « Deux façons de raconter votre mariage » avec sous-titre sur les deux chemins (FR) ; « Trois façons » dans les autres langues, où l'Atelier n'existe pas encore. « Comment ça se passe » précisé « Pour nos formules accompagnées ». FAQ de l'Atelier : les univers sont réservés aux formules accompagnées.
+
 ## Ouvert
 - Vérifier la licence des visuels issus de Canva.
 - Valider la maquette complète avant de passer au code.
