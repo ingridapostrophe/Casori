@@ -54,8 +54,9 @@ if ($brut === false || strlen($brut) > TAILLE_MAX) repondre(413, ['ok' => false,
 $c = json_decode($brut, true);
 if (!is_array($c)) repondre(400, ['ok' => false, 'erreur' => 'format']);
 
-/* Champ piège anti-robots : rempli = robot */
-if (!empty($c['site_web'])) repondre(200, ['ok' => true]);
+/* Champ piège anti-robots : rempli = probablement un robot.
+   On ne jette jamais la commande : elle est enregistrée et signalée « à vérifier ». */
+$suspect = !empty($c['zx_controle']);
 
 /* ---------- Dossier des commandes ---------- */
 if (!is_dir($DOSSIER) && !@mkdir($DOSSIER, 0700, true)) repondre(500, ['ok' => false, 'erreur' => 'dossier']);
@@ -123,7 +124,7 @@ if (is_dir($dossierCommande)) repondre(409, ['ok' => false, 'erreur' => 'doublon
 if (!@mkdir($dossierCommande, 0700)) repondre(500, ['ok' => false, 'erreur' => 'dossier']);
 
 $fiche = [
-    'numero' => $numero, 'statut' => 'en attente de paiement', 'recue_le' => date('c'),
+    'numero' => $numero, 'statut' => 'en attente de paiement', 'recue_le' => date('c'), 'a_verifier' => $suspect,
     'email' => $email, 'prix' => $prix, 'adresse_site' => texte($c['adresse'] ?? '', 120),
     'TARGET' => $target, 'COUPLE' => $couple, 'STYLE' => $style,
 ];
@@ -137,7 +138,7 @@ $limites[$ip][] = $maintenant;
 
 /* ---------- E-mail à Ingrid ---------- */
 $prenoms = $couple['prenom1'] . ' & ' . $couple['prenom2'];
-$sujet = "Nouvelle commande L'Atelier $numero - $prenoms ($prix €)";
+$sujet = ($suspect ? '[À VÉRIFIER] ' : '') . "Nouvelle commande L'Atelier $numero - $prenoms ($prix €)";
 $lignes = [
     "Nouvelle commande L'Atelier.",
     '',
