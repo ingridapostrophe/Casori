@@ -47,7 +47,7 @@
     document.body.dataset.palette = STYLE.palette;
   }
 
-  const fichierMotif = 'assets/motif-' + STYLE.motif + '.png';
+  const fichierMotif = 'assets/motif-' + STYLE.motif + (STYLE.motif === 'perso' ? '.png' : '.webp');
   const enTete = $('motif-entete'), section = $('motif-section');
   section.src = fichierMotif;
   if (STYLE.motif === 'bougainvillier') {
@@ -64,6 +64,7 @@
     });
   } else {
     enTete.src = fichierMotif;
+    if (STYLE.motif === 'brin') { enTete.classList.add('vertical'); section.classList.add('vertical'); }
   }
 
   /* ---------- Contenu ---------- */

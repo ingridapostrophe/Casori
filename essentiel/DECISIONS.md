@@ -16,7 +16,7 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - Prénoms en Allura avec animation simple (pas de generer_prenoms.py).
 - Palettes : Sauge & rose ancien, Terracotta & sable, Méditerranée & ocre, Bordeaux & champagne.
 - Palette personnalisée **incluse** : 2 couleurs (principale + accent), code couleur possible, fond et teintes de texte calculés, lisibilité garantie.
-- Motifs : brin fleuri, olivier, bougainvillier (variantes « un coin » et « deux coins en miroir »).
+- Motifs définitifs fournis (WebP dans `essentiel/modele/assets/`) : bouquet (« brin », vertical), olivier, bougainvillier (variantes « un coin » et « deux coins en miroir »).
   - À régler au code : bougainvillier plus petit sur tablette (720-1024 px) et sur petits téléphones.
 - Icônes au trait (lettre, couple, soleil, vélo) : gardées pour une version suivante.
 - Option +10 € : le couple intègre son propre motif.
@@ -28,9 +28,10 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - Étape 5 : date limite + lien Google Form, avec un modèle de formulaire Casorí à copier.
 
 ## Avancement
-- Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - à valider.
+- Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - validée.
+- Phase 2 : configurateur. Afficher « Vos couleurs sont très claires, le rendu sera discret » si besoin.
 
 ## Ouvert
-- Motifs définitifs recadrés par Ingrid (PNG transparent, ~800 px de large). Vérifier la licence des visuels issus de Canva.
+- Vérifier la licence des visuels issus de Canva.
 - Créer le modèle de Google Form Casorí (présence, nombre de personnes, régime alimentaire).
 - Valider la maquette complète avant de passer au code.
