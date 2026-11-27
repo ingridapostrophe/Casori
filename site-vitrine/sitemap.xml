@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Accueil -->
+  <url>
+    <loc>https://casori.fr/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://casori.fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casori.fr/ca/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casori.fr/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casori.fr/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casori.fr/index.html"/>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Formules -->
+  <url>
+    <loc>https://casori.fr/formules.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://casori.fr/formules.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casori.fr/ca/formules.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casori.fr/es/formules.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casori.fr/en/formules.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casori.fr/formules.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Partenaires -->
+  <url>
+    <loc>https://casori.fr/partenaires.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://casori.fr/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casori.fr/ca/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casori.fr/es/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casori.fr/en/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casori.fr/partenaires.html"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://casori.fr/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://casori.fr/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casori.fr/ca/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casori.fr/es/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casori.fr/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casori.fr/contact.html"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Mentions légales -->
+  <url>
+    <loc>https://casori.fr/mentions-legales.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://casori.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://casori.fr/ca/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://casori.fr/es/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://casori.fr/en/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://casori.fr/mentions-legales.html"/>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
