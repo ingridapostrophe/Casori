@@ -31,6 +31,14 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - validée.
 - Phase 2 : configurateur. Afficher « Vos couleurs sont très claires, le rendu sera discret » si besoin.
 
+## Stripe (mode test, compte « environnement de test Casori »)
+- Catalogue : 13 produits (L'Atelier 49 €, option motif 10 €, Digital 290 €, Complète 590 €, options à la carte).
+- Liens de paiement L'Atelier (CGV obligatoires, nom demandé, facture automatique avec mention TVA 293 B, redirection casori.fr/atelier/merci/) :
+  - 49 € : https://buy.stripe.com/test_5kQ8wRd8zdZO1rs2MT8Vi00 (plink_1UgMaVPxnxzVbi6OrmbZWK1b)
+  - 59 € avec motif : https://buy.stripe.com/test_cNi9AV6Kbf3SeeeevB8Vi01 (plink_1UgMaYPxnxzVbi6OzKvrV2TS)
+  - Le configurateur ajoute ?client_reference_id=<n° de commande>&prefilled_email=<e-mail>.
+- À recréer en mode réel au lancement.
+
 ## Ouvert
 - Vérifier la licence des visuels issus de Canva.
 - Créer le modèle de Google Form Casorí (présence, nombre de personnes, régime alimentaire).
