@@ -50,3 +50,7 @@ button { font: inherit; cursor: pointer; }
   .apercu { position: static; height: 80vh; }
   .liste th:nth-child(3), .liste td:nth-child(3) { display: none; }
 }
+.secours { margin-top: 10px; font-size: 13px; color: var(--gris); }
+.secours summary { cursor: pointer; }
+.secours p { margin: 6px 0; }
+.message.erreur-msg { background: #FBE9E7; color: var(--rouge); }

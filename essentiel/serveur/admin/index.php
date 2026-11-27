@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 $DOSSIER = getenv('CASORI_COMMANDES') ?: dirname(__DIR__, 3) . '/commandes-atelier';
 $MODELE  = dirname(__DIR__) . '/modele';
+/* Racine des sites des couples (sous-domaine mariages.casori.fr, séparée de public_html) */
+$MARIAGES = getenv('CASORI_MARIAGES') ?: dirname(__DIR__, 3) . '/mariages.casori.fr';
 const EMAIL_CASORI = 'contact@casori.fr';
 const URL_MARIAGES = 'https://mariages.casori.fr/';
 
@@ -69,6 +71,47 @@ function html_du_site(array $c, bool $apercu = false): string {
     $html = preg_replace_callback('/const TARGET = [\s\S]*?const STYLE = \{[\s\S]*?\};/', fn() => $bloc, $modele, 1);
     if ($apercu) $html = str_replace('<head>', '<head><base href="../modele/">', $html);
     return $html;
+}
+
+/* Liste des fichiers du site du couple : [chemin dans le site => contenu] */
+function fichiers_du_site(array $c): array {
+    global $MODELE, $DOSSIER;
+    $n = $c['numero'];
+    $f = [
+        'index.html' => html_du_site($c),
+        'style.css'  => (string)file_get_contents("$MODELE/style.css"),
+        'atelier.js' => (string)file_get_contents("$MODELE/atelier.js"),
+        'assets/couple.jpg' => (string)file_get_contents("$DOSSIER/$n/couple.jpg"),
+    ];
+    foreach (glob("$MODELE/assets/fonts/*.woff2") as $p) $f['assets/fonts/' . basename($p)] = (string)file_get_contents($p);
+    if ($c['STYLE']['motif'] === 'perso') $f['assets/motif-perso.png'] = (string)file_get_contents("$DOSSIER/$n/motif-perso.png");
+    else $f["assets/motif-{$c['STYLE']['motif']}.webp"] = (string)file_get_contents("$MODELE/assets/motif-{$c['STYLE']['motif']}.webp");
+    return $f;
+}
+
+/* Publie le site directement dans mariages.casori.fr/<dossier>/.
+   Refuse d'écraser un dossier qui n'a pas été créé par cette commande. */
+function publier(array $c): string {
+    global $MARIAGES;
+    if (!is_dir($MARIAGES)) return 'Le dossier des sites des couples (mariages.casori.fr) est introuvable sur l\'hébergement. Utilisez le .zip en attendant.';
+    $dossier = dossier_site($c);
+    $cible = "$MARIAGES/$dossier";
+    $marque = "$cible/.atelier-commande";
+    if (is_dir($cible)) {
+        $proprio = is_file($marque) ? trim((string)file_get_contents($marque)) : '';
+        $vide = count(array_diff(scandir($cible), ['.', '..'])) === 0;
+        if (!$vide && $proprio !== $c['numero']) return "Le dossier « $dossier » existe déjà et appartient à un autre site. Choisissez un autre nom de dossier ci-dessous.";
+    } elseif (!@mkdir($cible, 0755, true)) return 'Impossible de créer le dossier du site.';
+    foreach (fichiers_du_site($c) as $chemin => $contenu) {
+        $f = "$cible/$chemin";
+        if (!is_dir(dirname($f)) && !@mkdir(dirname($f), 0755, true)) return 'Impossible de créer un sous-dossier du site.';
+        if (file_put_contents($f, $contenu) === false) return 'Impossible d\'écrire les fichiers du site.';
+        @chmod($f, 0644);
+    }
+    file_put_contents($marque, $c['numero']); @chmod($marque, 0600);
+    /* Les sites des couples ne doivent pas apparaître dans Google */
+    if (!is_file("$MARIAGES/robots.txt")) @file_put_contents("$MARIAGES/robots.txt", "User-agent: *\nDisallow: /\n");
+    return '';
 }
 
 /* ---------- Mot de passe ---------- */
@@ -143,13 +186,7 @@ if ($action === 'zip') {
     $tmp = tempnam(sys_get_temp_dir(), 'atelier');
     $z = new ZipArchive();
     $z->open($tmp, ZipArchive::OVERWRITE);
-    $z->addFromString('index.html', html_du_site($c));
-    $z->addFile("$MODELE/style.css", 'style.css');
-    $z->addFile("$MODELE/atelier.js", 'atelier.js');
-    foreach (glob("$MODELE/assets/fonts/*.woff2") as $f) $z->addFile($f, 'assets/fonts/' . basename($f));
-    $z->addFile("$DOSSIER/$numero/couple.jpg", 'assets/couple.jpg');
-    if ($c['STYLE']['motif'] === 'perso') $z->addFile("$DOSSIER/$numero/motif-perso.png", 'assets/motif-perso.png');
-    else $z->addFile("$MODELE/assets/motif-{$c['STYLE']['motif']}.webp", "assets/motif-{$c['STYLE']['motif']}.webp");
+    foreach (fichiers_du_site($c) as $chemin => $contenu) $z->addFromString($chemin, $contenu);
     $z->close();
     header('Content-Type: application/zip');
     header('Content-Disposition: attachment; filename="' . $dossier . '.zip"');
@@ -165,9 +202,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'maj') {
     if ($quoi === 'dossier') {
         $d = slug((string)($_POST['dossier'] ?? ''));
         if ($d !== '') $c['dossier'] = $d;
-        $c['message'] = 'Dossier enregistré.';
+        $c['message'] = 'Dossier enregistré.' . ($c['statut'] === 'publiée' ? ' Attention : le site déjà publié reste à l\'ancienne adresse ; republiez-le pour la nouvelle.' : '');
     }
     if ($quoi === 'payee') { $c['statut'] = 'payée'; $c['payee_le'] = date('c'); $c['message'] = 'Commande marquée payée.'; }
+    if ($quoi === 'publier') {
+        $erreur = publier($c);
+        if ($erreur === '') { $c['statut'] = 'publiée'; $c['publiee_le'] = date('c'); $c['message'] = 'Site publié : vérifiez-le en ligne, puis envoyez le lien au couple.'; }
+        else { $c['message'] = $erreur; $c['message_erreur'] = true; }
+    }
     if ($quoi === 'publiee') { $c['statut'] = 'publiée'; $c['publiee_le'] = date('c'); $c['message'] = 'Commande marquée publiée.'; }
     if ($quoi === 'envoyer') {
         $url = URL_MARIAGES . dossier_site($c) . '/';
@@ -193,17 +235,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'maj') {
 if ($numero !== '') {
     $c = commande($numero);
     if (!$c) page('Introuvable', '<div class="carte"><p>Commande introuvable.</p><a href="./">Retour</a></div>');
-    $message = $c['message'] ?? ''; if ($message) { unset($c['message']); enregistrer($c); }
+    $message = $c['message'] ?? ''; $msgErreur = !empty($c['message_erreur']);
+    if ($message) { unset($c['message'], $c['message_erreur']); enregistrer($c); }
     $C = $c['COUPLE']; $S = $c['STYLE']; $dossier = dossier_site($c); $j = h(jeton());
     $form = fn($quoi, $libelle, $classe = 'principal', $extra = '') => '<form method="post" action="?action=maj"><input type="hidden" name="jeton" value="' . $j . '"><input type="hidden" name="n" value="' . h($numero) . '"><input type="hidden" name="quoi" value="' . $quoi . '">' . $extra . '<button class="' . $classe . '">' . $libelle . '</button></form>';
     $etapes = '<ol class="marche">'
         . '<li class="' . ($c['statut'] !== 'en attente de paiement' ? 'fait' : '') . '"><b>1. Vérifier le paiement</b> dans Stripe : un paiement de <b>' . h($c['prix']) . ' €</b> avec la référence <b>' . h($numero) . '</b>.'
         . ($c['statut'] === 'en attente de paiement' ? $form('payee', 'Paiement reçu') : '') . '</li>'
         . '<li><b>2. Vérifier le site</b> dans l\'aperçu' . ($S['motif'] === 'perso' ? ', <b>en particulier le motif personnel</b>' : '') . '.</li>'
-        . '<li><b>3. Télécharger le .zip</b> et l\'extraire dans <b>mariages.casori.fr/' . h($dossier) . '/</b> (créer ce dossier dans cPanel).'
-        . '<a class="principal" href="?action=zip&n=' . h(rawurlencode($numero)) . '">Télécharger ' . h($dossier) . '.zip</a></li>'
-        . '<li class="' . ($c['statut'] === 'publiée' ? 'fait' : '') . '"><b>4. Vérifier en ligne</b> : <a href="' . h(URL_MARIAGES . $dossier . '/') . '" target="_blank" rel="noopener">' . h('mariages.casori.fr/' . $dossier . '/') . '</a>'
-        . ($c['statut'] !== 'publiée' ? $form('publiee', 'C\'est en ligne', 'secondaire') : '') . '</li>'
+        . '<li class="' . ($c['statut'] === 'publiée' ? 'fait' : '') . '"><b>3. Publier le site</b> sur <b>mariages.casori.fr/' . h($dossier) . '/</b>.'
+        . $form('publier', $c['statut'] === 'publiée' ? 'Republier (après une correction)' : 'Publier le site', $c['statut'] === 'publiée' ? 'secondaire' : 'principal')
+        . '<details class="secours"><summary>Publier à la main (.zip)</summary><p>Télécharger le .zip et l\'extraire dans le dossier mariages.casori.fr/' . h($dossier) . '/ via cPanel.</p><a class="secondaire" href="?action=zip&n=' . h(rawurlencode($numero)) . '">Télécharger ' . h($dossier) . '.zip</a>'
+        . ($c['statut'] !== 'publiée' ? $form('publiee', 'Je l\'ai publié à la main', 'lien') : '') . '</details></li>'
+        . '<li><b>4. Vérifier en ligne</b> : <a href="' . h(URL_MARIAGES . $dossier . '/') . '" target="_blank" rel="noopener">' . h('mariages.casori.fr/' . $dossier . '/') . '</a></li>'
         . '<li class="' . (!empty($c['lien_envoye_le']) ? 'fait' : '') . '"><b>5. Envoyer le lien au couple</b> par e-mail (' . h($c['email']) . ').'
         . $form('envoyer', empty($c['lien_envoye_le']) ? 'Envoyer le lien' : 'Renvoyer le lien', 'secondaire') . '</li></ol>';
     $infos = '<dl class="infos"><dt>Couple</dt><dd>' . h($C['prenom1'] . ' & ' . $C['prenom2']) . '</dd><dt>Mariage</dt><dd>' . h(date_fr($c['TARGET'])) . ' - ' . h(implode(' - ', array_filter([$C['lieu'], $C['ville']]))) . '</dd>'
@@ -214,7 +258,7 @@ if ($numero !== '') {
         . '<label>Dossier du site<input type="text" name="dossier" value="' . h($dossier) . '"></label><button class="secondaire">Changer</button></form>';
     $danger = '<details class="danger"><summary>Supprimer cette commande</summary><p>Supprime définitivement les textes et les photos de cette commande (pas le site en ligne). Recopiez le numéro pour confirmer.</p>'
         . $form('supprimer', 'Supprimer définitivement', 'rouge', '<input type="text" name="confirmer" placeholder="' . h($numero) . '">') . '</details>';
-    page($numero, '<p><a href="./">← Toutes les commandes</a></p>' . ($message ? '<p class="message">' . h($message) . '</p>' : '')
+    page($numero, '<p><a href="./">← Toutes les commandes</a></p>' . ($message ? '<p class="message' . ($msgErreur ? ' erreur-msg' : '') . '">' . h($message) . '</p>' : '')
         . '<h1>' . h($C['prenom1'] . ' & ' . $C['prenom2']) . ' <small>' . h($numero) . ' · ' . h($c['prix']) . ' €</small></h1>'
         . '<div class="fiche"><div>' . $etapes . $infos . $danger . '</div>'
         . '<div class="apercu"><iframe src="?action=apercu&n=' . h(rawurlencode($numero)) . '" title="Aperçu du site"></iframe></div></div>');
