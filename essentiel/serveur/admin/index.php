@@ -230,7 +230,7 @@ foreach ($commandes as $c) {
     $lignes .= '<tr><td><a href="?n=' . h(rawurlencode($c['numero'])) . '">' . h($c['COUPLE']['prenom1'] . ' & ' . $c['COUPLE']['prenom2']) . '</a><br><small>' . h($c['numero']) . '</small></td>'
         . '<td>' . h(date_fr($c['TARGET'])) . ($rgpd ? '<br><small class="rgpd">mariage passé depuis 3 mois : données à supprimer</small>' : '') . '</td>'
         . '<td>' . h($c['prix']) . ' €' . ($c['STYLE']['motif'] === 'perso' ? '<br><small>motif perso</small>' : '') . '</td>'
-        . '<td><span class="statut s-' . h(slug($c['statut'])) . '">' . h($c['statut']) . '</span></td></tr>';
+        . '<td><span class="statut ' . (['payée' => 's-payee', 'publiée' => 's-publiee'][$c['statut']] ?? '') . '">' . h($c['statut']) . '</span></td></tr>';
 }
 page('Commandes', (isset($_GET['supprimee']) ? '<p class="message">Commande ' . h($_GET['supprimee']) . ' supprimée.</p>' : '')
     . '<h1>Commandes L\'Atelier</h1>'
