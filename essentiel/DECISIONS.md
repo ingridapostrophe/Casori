@@ -44,6 +44,11 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - À faire plus tard, ensemble et écran par écran (à partir de captures d'Ingrid) : factures en A4, délai de paiement des factures manuelles, logo et couleur #B8925A, notification de paiement. Si le réglage A4 est introuvable, le forcer par API sur chaque facture.
 - À recréer en mode réel au lancement.
 
+## Phase 5 (mise en ligne) - en cours
+- Page de présentation `site-vitrine/atelier/` : un téléphone qui alterne les 4 styles (photo du thème Minimalist), palettes en pastilles, inclus / pas inclus, « Derrière l'Atelier » (fond doré, photo d'Ingrid), FAQ. Lien « L'Atelier » ajouté aux menus des pages FR. Français uniquement pour l'instant.
+- CGV `site-vitrine/atelier/cgv/` rédigées, à relire par Ingrid. Case « renonciation au droit de rétractation » ajoutée à l'étape 6 du configurateur.
+- `./construire.sh` assemble désormais tout public_html (site vitrine + atelier) dans `build/casori-public_html.zip`.
+
 ## Ouvert
 - Vérifier la licence des visuels issus de Canva.
 - Créer le modèle de Google Form Casorí (présence, nombre de personnes, régime alimentaire).

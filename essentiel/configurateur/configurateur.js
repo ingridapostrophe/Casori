@@ -444,11 +444,11 @@
     $('recap-total').textContent = E.motif === 'perso' ? p + ' € (dont votre motif : 10 €)' : p + ' €';
     $('payer').textContent = 'Payer ' + p + ' € et publier mon site';
     const tout = [1, 2, 3, 4, 5].every(etapeComplete);
-    const cases = ['ok-relu', 'ok-modif', 'ok-cgv'].every(id => $(id).checked);
+    const cases = ['ok-relu', 'ok-modif', 'ok-retract', 'ok-cgv'].every(id => $(id).checked);
     const mail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(E.email.trim());
     $('payer').disabled = !(tout && cases && mail);
   }
-  ['ok-relu', 'ok-modif', 'ok-cgv'].forEach(id => $(id).addEventListener('change', majPaiement));
+  ['ok-relu', 'ok-modif', 'ok-retract', 'ok-cgv'].forEach(id => $(id).addEventListener('change', majPaiement));
 
   const numeroCommande = () => {
     const d = new Date();
