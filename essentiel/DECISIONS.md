@@ -1,4 +1,6 @@
-# Formule Essentiel (49 €) - décisions prises
+# L'Atelier (49 €) - décisions prises
+
+Nom de la formule : **L'Atelier** (« L'Atelier Casorí - votre site de mariage en 10 minutes »).
 
 Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, puis paie. Ingrid vérifie et publie.
 
@@ -24,6 +26,9 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
 - Site en ligne jusqu'à 1 an après le mariage.
 - Étape 3 : 5 moments maximum, lien Google Maps généré depuis l'adresse, note facultative.
 - Étape 5 : date limite + lien Google Form, avec un modèle de formulaire Casorí à copier.
+
+## Avancement
+- Phase 1 (modèle de site paramétrable) : `essentiel/modele/` - à valider.
 
 ## Ouvert
 - Motifs définitifs recadrés par Ingrid (PNG transparent, ~800 px de large). Vérifier la licence des visuels issus de Canva.

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre mariage</title>
+  <meta name="description" content="">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== EN-TÊTE ========== -->
+  <header class="entete" id="entete">
+    <div class="bloc-titre">
+      <img class="motif-entete" id="motif-entete" src="" alt="" aria-hidden="true">
+      <h1 class="prenoms calli" id="prenoms"></h1>
+      <div class="trait"></div>
+      <p class="date" id="date-longue"></p>
+      <p class="lieu" id="lieu"></p>
+    </div>
+  </header>
+
+  <!-- ========== LE COUPLE ========== -->
+  <section class="couple">
+    <img class="photo" src="assets/couple.jpg" alt="" id="photo">
+    <p class="mot" id="mot"></p>
+  </section>
+
+  <!-- ========== PROGRAMME ========== -->
+  <section class="programme">
+    <img class="motif-section" id="motif-section" src="" alt="" aria-hidden="true">
+    <h2 class="titre-section calli">Le programme</h2>
+    <ol class="etapes" id="etapes"></ol>
+    <p class="note" id="note"></p>
+  </section>
+
+  <!-- ========== RSVP ========== -->
+  <section class="rsvp">
+    <h2 class="titre-section calli">Serez-vous des nôtres ?</h2>
+    <p id="rsvp-texte"></p>
+    <a class="bouton" id="lien-rsvp" href="#" target="_blank" rel="noopener">Répondre</a>
+  </section>
+
+  <!-- ========== PIED DE PAGE ========== -->
+  <footer class="pied">
+    <p class="prenoms-pied calli" id="prenoms-pied"></p>
+    <p class="date-pied" id="date-courte"></p>
+    <p class="signature">Site créé avec amour par <a href="https://casori.fr" target="_blank" rel="noopener">Casor<span class="accent-casori">í</span></a></p>
+  </footer>
+
+
+  <!-- =====================================================================
+       CONTENU DU COUPLE - tout ce qui change d'un couple à l'autre est ici
+       (rempli par le configurateur de l'Atelier, ou à la main)
+       ===================================================================== -->
+  <script>
+    const TARGET = "2027-10-16";          /* date du mariage, format AAAA-MM-JJ */
+
+    const COUPLE = {
+      prenom1: "Anaïs",
+      prenom2: "Jean-Philippe",
+      lieu: "Mas Puig",
+      ville: "Saint-Génis-des-Fontaines",
+
+      photoAlt: "Anaïs et Jean-Philippe",
+      mot: "Onze ans d'amour, deux petites filles et toujours la même envie de faire la fête ensemble : nous avons décidé de nous dire oui ! Nous serions si heureux de partager ce grand jour avec vous.",
+
+      /* 5 moments maximum. carte: true affiche le lien « Itinéraire Google Maps » créé depuis l'adresse */
+      programme: [
+        { heure: "14h45", titre: "Cérémonie religieuse", adresse: "Église de Canohès", carte: true },
+        { heure: "18h00", titre: "Vin d'honneur",        adresse: "Mas Puig, Saint-Génis-des-Fontaines", carte: true },
+        { heure: "20h00", titre: "Dîner et soirée",      adresse: "Mas Puig, Saint-Génis-des-Fontaines", carte: false }
+      ],
+      note: "Merci de noter que les animaux ne sont pas acceptés sur le domaine.",
+
+      rsvpAvant: "2027-06-30",            /* date limite de réponse, format AAAA-MM-JJ */
+      rsvpLien: "#"                       /* lien du Google Form */
+    };
+
+    const STYLE = {
+      palette: "sauge",                   /* sauge | terracotta | mediterranee | bordeaux | perso */
+      couleurs: { principale: "#2E6B5E", accent: "#E0A458" },   /* utilisé seulement si palette = perso */
+      motif: "brin",                      /* brin | olivier | bougainvillier | perso (assets/motif-perso.png) */
+      disposition: "coin"                 /* bougainvillier seulement : coin | deux */
+    };
+  </script>
+
+
+  <!-- ========== Remplissage de la page (ne pas modifier) ========== -->
+  <script src="atelier.js"></script>
+</body>
+</html>
