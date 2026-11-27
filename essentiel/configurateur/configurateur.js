@@ -471,12 +471,17 @@
     }
   });
 
-  /* PHASE 3 : ici, envoi de la commande (données + photo + motif) au script PHP d'o2switch,
-     qui l'enregistre dans un dossier privé et prévient Ingrid par e-mail.
-     En attendant, rien n'est envoyé : on passe directement au paiement de test. */
-  function envoyerCommande(commande) {
-    console.info('Commande prête (phase 3 : à envoyer au serveur)', commande.numero);
-    return Promise.resolve();
+  /* Envoi de la commande (données + photo + motif) au script commande.php d'o2switch,
+     qui l'enregistre hors de public_html et prévient Ingrid par e-mail. */
+  async function envoyerCommande(commande) {
+    const r = await fetch('../commande.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...commande, site_web: $('site-web').value })
+    });
+    const rep = await r.json().catch(() => ({}));
+    if (!r.ok || !rep.ok) throw new Error(rep.erreur || 'envoi');
+    try { localStorage.setItem('casori-atelier-derniere-commande', commande.numero); } catch (e) {}
   }
 
   /* ---------- Démarrage ---------- */
