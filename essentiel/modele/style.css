@@ -115,7 +115,8 @@ a { color: inherit; }
 .programme { max-width: 680px; margin: 0 auto; padding: 24px 32px 96px; text-align: center; }
 .motif-section { width: 120px; margin: 0 auto 4px; display: block; }
 .motif-section.vertical { width: 80px; }
-.motif-entete.vertical { width: 110px; margin-bottom: 14px; }
+.motif-entete.bouquet { width: 230px; margin-bottom: 14px; }
+.motif-section.bouquet { width: 160px; }
 .titre-section { color: var(--titre); font-size: clamp(44px, 7vw, 60px); line-height: 1.1; margin-bottom: 32px; }
 
 .etapes { list-style: none; text-align: left; }
@@ -171,7 +172,7 @@ a { color: inherit; }
 @media (max-width: 720px) {
   .entete { min-height: 85vh; padding: 48px 12px; }
   .motif-entete { width: 140px; }
-  .motif-entete.vertical { width: 90px; }
+  .motif-entete.bouquet { width: 180px; }
   .coin { width: 140px; top: -20px; }
   .coin-g { left: -30px; }
   .coin-d { right: -30px; }
@@ -180,7 +181,8 @@ a { color: inherit; }
   .couple .mot { font-size: 17px; text-align: center; }
   .programme { padding: 16px 24px 72px; }
   .etape { grid-template-columns: 70px 1fr; }
-  .heure, .etape h3 { font-size: 17px; }
+  .etape h3 { font-size: 17px; }
+  .heure { font-size: 26px; }
 }
 
 @media (max-width: 420px) {

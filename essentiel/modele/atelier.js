@@ -64,7 +64,7 @@
     });
   } else {
     enTete.src = fichierMotif;
-    if (STYLE.motif === 'brin') { enTete.classList.add('vertical'); section.classList.add('vertical'); }
+    if (STYLE.motif === 'brin') { enTete.classList.add('bouquet'); section.classList.add('bouquet'); }
   }
 
   /* ---------- Contenu ---------- */
