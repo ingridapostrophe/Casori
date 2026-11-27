@@ -37,6 +37,8 @@ Configurateur en ligne : le couple crée son site seul, avec aperçu en direct, 
   - 49 € : https://buy.stripe.com/test_5kQ8wRd8zdZO1rs2MT8Vi00 (plink_1UgMaVPxnxzVbi6OrmbZWK1b)
   - 59 € avec motif : https://buy.stripe.com/test_cNi9AV6Kbf3SeeeevB8Vi01 (plink_1UgMaYPxnxzVbi6OzKvrV2TS)
   - Le configurateur ajoute ?client_reference_id=<n° de commande>&prefilled_email=<e-mail>.
+- Paiement test réussi (59 €, facture générée, pied de page validé par Ingrid).
+- À faire plus tard, ensemble et écran par écran (à partir de captures d'Ingrid) : factures en A4, délai de paiement des factures manuelles, logo et couleur #B8925A, notification de paiement. Si le réglage A4 est introuvable, le forcer par API sur chaque facture.
 - À recréer en mode réel au lancement.
 
 ## Ouvert
